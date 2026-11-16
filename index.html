@@ -866,6 +866,19 @@
         font-size: 10px;
     }
 }
+@media (max-width: 899px) {
+    .topbar__inner {
+        justify-content: space-between;
+    }
+
+    .topbar__actions {
+        margin-left: auto;
+    }
+
+    .icon-btn--menu {
+        display: none;
+    }
+}
   </style>
 </head>
 <body>
@@ -888,9 +901,9 @@
       <div class="topbar__actions">
         <button class="nav-resume" id="openResume">RESUME ↗</button>
         <a href="#contact" class="btn btn--primary topbar__cta" style="min-height:40px;padding:10px 16px;font-size:11px">Let's connect</a>
-        <a href="#contact" class="icon-btn icon-btn--menu" aria-label="Go to contact">
+        <!-- <a href="#contact" class="icon-btn icon-btn--menu" aria-label="Go to contact">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
-        </a>
+        </a> -->
         <!-- <div class="avatar" aria-hidden="true"> -->
           <!-- <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> -->
         </div>

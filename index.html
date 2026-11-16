@@ -798,6 +798,68 @@
       .marquee__track, .t-cursor { animation: none; }
       .card { transition: none; }
     }
+    /* MOBILE HEADER FIX */
+@media (max-width: 899px) {
+
+    .topbar__inner {
+        min-width: 0;
+        gap: 8px;
+    }
+
+    .brand {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .brand__name {
+        font-size: 18px;
+        white-space: nowrap;
+    }
+
+    .topbar__actions {
+        flex: 0 0 auto;
+        gap: 8px;
+    }
+
+    .icon-btn {
+        flex: 0 0 44px;
+    }
+
+    
+}
+/* PREVENT MOBILE GRID OVERFLOW */
+@media (max-width: 899px) {
+
+    .hero__grid,
+    .contact-grid,
+    .contact-info,
+    .form,
+    .timeline,
+    .block {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .form__head {
+        flex-wrap: wrap;
+    }
+
+    .field,
+    .field input {
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .channel {
+        min-width: 0;
+        max-width: 100%;
+    }
+}
   </style>
 </head>
 <body>
@@ -822,8 +884,8 @@
         <a href="#contact" class="icon-btn icon-btn--menu" aria-label="Go to contact">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
         </a>
-        <div class="avatar" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        <!-- <div class="avatar" aria-hidden="true"> -->
+          <!-- <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> -->
         </div>
       </div>
     </div>

@@ -39,7 +39,145 @@
       --section-y: clamp(48px, 8vw, 104px);
       --header-h: 64px;
     }
+    /* RESUME NAV BUTTON */
+.nav-resume {
+    background: var(--lime);
+    color: #000;
+    border: none;
+    padding: 10px 18px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
 
+.nav-resume:hover {
+    background: #fff;
+    transform: translateY(-2px);
+}
+
+
+/* RESUME MODAL */
+.resume-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    background: rgba(0, 0, 0, 0.92);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.resume-modal.active {
+    display: flex;
+}
+
+
+/* RESUME CONTAINER */
+.resume-container {
+    width: 100%;
+    max-width: 1000px;
+    height: 90vh;
+
+    background: #111;
+    border: 1px solid #333;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* RESUME HEADER */
+.resume-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 20px;
+    background: #111;
+    border-bottom: 1px solid #333;
+}
+
+.resume-header h3 {
+    color: var(--lime);
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.resume-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.resume-download {
+    background: var(--lime);
+    color: #000;
+    text-decoration: none;
+
+    padding: 10px 15px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.resume-download:hover {
+    background: #fff;
+}
+
+.resume-close {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #555;
+
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.resume-close:hover {
+    background: #333;
+}
+
+
+/* PDF VIEWER */
+.resume-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #222;
+}
+
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 600px) {
+
+    .resume-modal {
+        padding: 8px;
+    }
+
+    .resume-container {
+        height: 95vh;
+    }
+
+    .resume-header {
+        padding: 12px;
+    }
+
+    .resume-header h3 {
+        font-size: 11px;
+    }
+
+    .resume-download {
+        padding: 9px;
+        font-size: 9px;
+    }
+
+}
     /* ============ Base ============ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; scroll-padding-top: calc(var(10px) + 16px); -webkit-text-size-adjust: 100%; }
@@ -676,6 +814,7 @@
         <a href="#projects" data-nav="projects">Projects</a>
         <a href="#edu" data-nav="edu">Education</a>
         <a href="#contact" data-nav="contact">Contact</a>
+        <button class="nav-resume" id="openResume">RESUME ↗</button>
       </nav>
 
       <div class="topbar__actions">
@@ -1096,6 +1235,42 @@
       </a>
     </div>
   </nav>
+  <!-- RESUME MODAL -->
+<div class="resume-modal" id="resumeModal">
+
+    <div class="resume-container">
+
+        <!-- Header -->
+        <div class="resume-header">
+
+            <h3>MY RESUME</h3>
+
+            <div class="resume-actions">
+
+                <a href="assets/resume.pdf"
+                   download="My-Resume.pdf"
+                   class="resume-download">
+                    DOWNLOAD ↓
+                </a>
+
+                <button class="resume-close" id="closeResume">
+                    ✕
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- PDF Viewer -->
+        <iframe
+            src="assets/resume.pdf"
+            class="resume-frame"
+            title="My Resume">
+        </iframe>
+
+    </div>
+
+</div>
 
   <script>
     (function () {
@@ -1206,6 +1381,36 @@
       window.addEventListener("resize", updateActive);
       updateActive();
     })();
+    // RESUME MODAL
+const openResume = document.getElementById("openResume");
+const closeResume = document.getElementById("closeResume");
+const resumeModal = document.getElementById("resumeModal");
+
+openResume.addEventListener("click", () => {
+    resumeModal.classList.add("active");
+    document.body.style.overflow = "hidden";
+});
+
+closeResume.addEventListener("click", () => {
+    resumeModal.classList.remove("active");
+    document.body.style.overflow = "";
+});
+
+// Close when clicking outside the resume
+resumeModal.addEventListener("click", (event) => {
+    if (event.target === resumeModal) {
+        resumeModal.classList.remove("active");
+        document.body.style.overflow = "";
+    }
+});
+
+// Close using Escape key
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        resumeModal.classList.remove("active");
+        document.body.style.overflow = "";
+    }
+});
   </script>
 </body>
 </html>
